@@ -80,3 +80,21 @@ if __name__ == "__main__":
         reset_rules()
     else:
         print("Invalid choice!")
+
+
+How It Works:
+1.execute_iptables_command(command): This function runs an iptables command passed to it using subprocess.run. It executes the command and catches errors.
+2.List Rules (list_rules): This function lists all the current firewall rules.
+3.Block/Allow IP (block_ip, allow_ip): These functions add or remove rules to block or allow traffic from a specific IP address.
+4.Block/Allow Port (block_port, allow_port): These functions add or remove rules to block or allow traffic on a specific port.
+5.Reset Rules (reset_rules): This flushes all current rules, resetting the firewall.
+
+Running the Script:
+1.Make the script executable: 
+chmod +x firewall.py
+
+2.Run the script:
+sudo python3 firewall.py
+
+3.You will see options to list rules, block/allow IPs, block/allow ports, or reset the firewall.
+
