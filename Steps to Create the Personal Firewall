@@ -1,0 +1,82 @@
+1. Setting Up the Environment:
+First, make sure iptables is installed on your system. On most Linux distributions, it comes pre-installed.
+
+Check if it is installed by running:
+sudo iptables --version
+
+
+2. Create the Python Script:
+Python script that can interact with iptables to set firewall rules.
+
+Code:
+import subprocess
+import sys
+
+# Function to execute iptables command
+def execute_iptables_command(command):
+    try:
+        subprocess.run(command, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        print(f"Command executed: {command}")
+    except subprocess.CalledProcessError as e:
+        print(f"Error executing command: {e}")
+        sys.exit(1)
+
+# Function to list current firewall rules
+def list_rules():
+    command = ["sudo", "iptables", "-L"]
+    execute_iptables_command(command)
+
+# Function to block a specific IP address
+def block_ip(ip_address):
+    command = ["sudo", "iptables", "-A", "INPUT", "-s", ip_address, "-j", "DROP"]
+    execute_iptables_command(command)
+
+# Function to allow a specific IP address
+def allow_ip(ip_address):
+    command = ["sudo", "iptables", "-A", "INPUT", "-s", ip_address, "-j", "ACCEPT"]
+    execute_iptables_command(command)
+
+# Function to block a specific port
+def block_port(port):
+    command = ["sudo", "iptables", "-A", "INPUT", "-p", "tcp", "--dport", port, "-j", "DROP"]
+    execute_iptables_command(command)
+
+# Function to allow a specific port
+def allow_port(port):
+    command = ["sudo", "iptables", "-A", "INPUT", "-p", "tcp", "--dport", port, "-j", "ACCEPT"]
+    execute_iptables_command(command)
+
+# Function to reset all iptables rules
+def reset_rules():
+    command = ["sudo", "iptables", "-F"]  # Flush all rules
+    execute_iptables_command(command)
+
+# Main function to test the firewall
+if __name__ == "__main__":
+    print("Simple Firewall Script")
+    print("1. List rules")
+    print("2. Block an IP")
+    print("3. Allow an IP")
+    print("4. Block a port")
+    print("5. Allow a port")
+    print("6. Reset all rules")
+    choice = input("Enter your choice: ")
+
+    if choice == "1":
+        list_rules()
+    elif choice == "2":
+        ip = input("Enter IP to block: ")
+        block_ip(ip)
+    elif choice == "3":
+        ip = input("Enter IP to allow: ")
+        allow_ip(ip)
+    elif choice == "4":
+        port = input("Enter port to block: ")
+        block_port(port)
+    elif choice == "5":
+        port = input("Enter port to allow: ")
+        allow_port(port)
+    elif choice == "6":
+        reset_rules()
+    else:
+        print("Invalid choice!")
