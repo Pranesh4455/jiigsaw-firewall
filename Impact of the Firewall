@@ -1,0 +1,15 @@
+1) Improved System Security:
+The firewall adds a layer of defense by blocking unauthorized access and potentially malicious traffic based on IP or port.
+Reduces risk from common attacks like port scanning, brute force, or unauthorized remote connections.
+
+2) Practical Understanding of Network Security:
+Gives hands-on experience with core networking concepts: ports, protocols, and IP filtering.
+Familiarizes you with how firewalls actually work, beyond theory.
+
+3) Foundation for Advanced Security Projects:
+This project acts as a stepping stone toward more complex tools like Intrusion Detection Systems (IDS) or SIEM solutions.
+Helps in understanding enterprise-level tools like iptables, ufw, or even firewalld.
+
+4) Automation of Security Tasks:
+By using Python, you automate firewall rule management—something that’s typically done manually.
+In a larger environment, this approach can save time and reduce errors.
